@@ -14,5 +14,6 @@ module.exports = {
       'warn',
       { allowConstantExport: true },
     ],
+    indent: [2, 4], // js 4个空格缩进
   },
 }
