@@ -1,13 +1,15 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import './App.css'
 import { Button } from 'antd'
 import { Divider } from 'antd'
 import { useSelector, useDispatch } from 'react-redux'
 import { increment, decrement, addToNum } from '@/store/modules/counterStore'
+import { fetchChannelList } from '@/store/modules/channelStore'
 function App() {
     const [count0, setCount0] = useState(0)
 
     const counterState = useSelector((state: any) => state.counter)
+    const { channelList } = useSelector((state: any) => state.channel)
 
     const Dispath = useDispatch()
     const addCounter = () => {
@@ -19,6 +21,10 @@ function App() {
     const addToNumCounter = (num: number) => {
         Dispath(addToNum(num))
     }
+
+    useEffect(() => {
+        Dispath(fetchChannelList())
+    }, [Dispath])
 
     return (
         <div className="app">
@@ -48,6 +54,11 @@ function App() {
             >
                 button+20
             </Button>
+            <div>
+                {channelList.map((item: any) => (
+                    <span className="channel-item">{item.name}</span>
+                ))}
+            </div>
         </div>
     )
 }
