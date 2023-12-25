@@ -3,7 +3,7 @@ import './App.css'
 import { Button } from 'antd'
 import { Divider } from 'antd'
 import { useSelector, useDispatch } from 'react-redux'
-import { increment, decrement } from '@/store/modules/counterStore'
+import { increment, decrement, addToNum } from '@/store/modules/counterStore'
 function App() {
     const [count0, setCount0] = useState(0)
 
@@ -15,6 +15,9 @@ function App() {
     }
     const delCounter = () => {
         Dispath(decrement())
+    }
+    const addToNumCounter = (num: number) => {
+        Dispath(addToNum(num))
     }
 
     return (
@@ -28,6 +31,22 @@ function App() {
             </Button>
             <Button type="primary" onClick={delCounter}>
                 Button-
+            </Button>
+            <Button
+                type="primary"
+                onClick={() => {
+                    addToNumCounter(10)
+                }}
+            >
+                button+10
+            </Button>
+            <Button
+                type="primary"
+                onClick={() => {
+                    addToNumCounter(20)
+                }}
+            >
+                button+20
             </Button>
         </div>
     )
