@@ -78,3 +78,39 @@ import pluginEslint  from 'vite-plugin-eslint'
 ```
 
 > 注意 配置完 刷新下浏览器
+
+## 使用 局部样式
+
+-   1. 文件名定义成 xxx.module.scss
+-   2. 在组件中引入 import style from './App.module.scss'
+-   3. 使用 <div className={style.app}></div>
+-   4. 为了支持.驼峰 需要 vite 中配置
+
+```ts
+// vite.config.ts
+
+  css: {
+      modules: {
+          localsConvention: 'camelCase',
+      },
+  },
+```
+
+-   使用
+
+```js
+// App.module.scss
+.app {
+    height: 100vh;
+    .app-test {
+        font-size: 30px;
+    }
+}
+// app.tsx
+ import style from './App.module.scss'
+ ...
+ <div className={style['app-test']}>123</div>
+ <div className={style.appTest}>123</div>  // 使用驼峰也可以了
+```
+
+## 使用 classnames 模块
