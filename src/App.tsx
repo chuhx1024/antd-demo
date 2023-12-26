@@ -5,6 +5,8 @@ import { Divider } from 'antd'
 import { useSelector, useDispatch } from 'react-redux'
 import { increment, decrement, addToNum } from '@/store/modules/counterStore'
 import { fetchChannelList } from '@/store/modules/channelStore'
+import IndexRouter from '@/router/index'
+
 function App() {
     const [count0, setCount0] = useState(0)
 
@@ -56,9 +58,12 @@ function App() {
             </Button>
             <div>
                 {channelList.map((item: any) => (
-                    <span className="channel-item">{item.name}</span>
+                    <span className="channel-item" key={item.id}>
+                        {item.name}
+                    </span>
                 ))}
             </div>
+            <IndexRouter></IndexRouter>
         </div>
     )
 }
