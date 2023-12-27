@@ -4,15 +4,18 @@ import { useNavigate } from 'react-router'
 import TheLogo from './TheLogo'
 import style from './index.module.scss'
 import ccc from '@/router/routerConfig.tsx'
-console.log(ccc)
+import { useLocation } from 'react-router-dom'
 const { Sider } = Layout
 
 const TheSider = () => {
     const { collapsed } = useSelector((state: any) => state.app)
+    const { pathname } = useLocation()
+    const defaultSelectedKey = pathname
+    const defaultOpenKey = pathname.split('/').slice(0, -1).join('/')
 
     const Navigate = useNavigate()
 
-    const handleNavLink = ({ key }) => {
+    const handleNavLink = ({ key }: { key: string }) => {
         Navigate(key)
     }
     return (
@@ -26,7 +29,8 @@ const TheSider = () => {
             <Menu
                 theme="dark"
                 mode="inline"
-                defaultSelectedKeys={['1']}
+                defaultSelectedKeys={[defaultSelectedKey]}
+                defaultOpenKeys={[defaultOpenKey]}
                 items={ccc}
                 onClick={handleNavLink}
             />

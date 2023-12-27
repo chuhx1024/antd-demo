@@ -29,16 +29,14 @@ const items: MenuProps['items'] = [
     getItem('Dashboard', '/', <MailOutlined />, <Home />),
     getItem('产品', '/product0', <MailOutlined />, <Product />),
 
-    getItem('流程管理', 'flowManage', <AppstoreOutlined />, <></>, [
-        getItem('任务', 'product1', null, <Task />),
-        getItem('产品1', 'product2', <></>, <Product />),
-        getItem('工单管理', 'sub3', null, null, [
-            getItem('新建工单', 'home', null, <Home />),
-            getItem('历史数据', 'Task0', null, <Task />),
+    getItem('流程管理', '/flowManage', <AppstoreOutlined />, <></>, [
+        getItem('任务', '/flowManage/product1', null, <Task />),
+        getItem('产品1', '/flowManage/product2', <></>, <Product />),
+        getItem('工单管理', '/flowManage/ticketSystem', null, null, [
+            getItem('新建工单', '/flowManage/ticketSystem/home', null, <Home />),
+            getItem('历史数据', '/flowManage/ticketSystem/Task0', null, <Task />),
         ]),
     ]),
 ]
-
-console.log(items)
 
 export default items || []

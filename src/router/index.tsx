@@ -11,7 +11,9 @@ const getRouteArr = (arr: MenuProps['items']) => {
         arr.forEach((item: MenuItem) => {
             if (item) {
                 if (!(item as { children: unknown }).children) {
-                    routeArr.push(<Route path={item?.key} element={item?.ele} />)
+                    routeArr.push(
+                        <Route key={item?.key} path={item.key as string} element={item.ele} />,
+                    )
                 } else {
                     const arr = (item as { children: unknown }).children as MenuProps['items']
                     routeArr.push(...getRouteArr(arr))
