@@ -1,21 +1,29 @@
-import { NavLink, Routes, Route } from 'react-router-dom'
-import Product from '@/views/product/Product'
-import Home from '@/views/home/Home'
-import ccc from '@/router/routerConfig'
-console.log(ccc)
+import React from 'react'
+import { Routes, Route } from 'react-router-dom'
+import type { MenuProps } from 'antd'
+type MenuItem = Required<MenuProps>['items'][number]
+
+import routerConfig from '@/router/routerConfig'
+
+const getRouteArr = (arr: MenuProps['items']) => {
+    const routeArr: React.ReactElement[] = []
+    arr &&
+        arr.forEach((item: MenuItem) => {
+            if (item) {
+                if (!(item as { children: unknown }).children) {
+                    routeArr.push(<Route path={item?.key} element={item?.ele} />)
+                } else {
+                    const arr = (item as { children: unknown }).children as MenuProps['items']
+                    routeArr.push(...getRouteArr(arr))
+                }
+            }
+        })
+    return routeArr
+}
 function IndexRouter() {
-    console.log(ccc)
     return (
         <nav>
-            <NavLink to="">首页</NavLink>
-            <NavLink to="product">产品</NavLink>
-            <Routes>
-                <Route path="/" element={<Home />} />
-                <Route path="/product" element={<Product />} />
-                {ccc.map((item) => (
-                    <Route path={item.path} element={item.ele} />
-                ))}
-            </Routes>
+            <Routes>{getRouteArr(routerConfig)}</Routes>
         </nav>
     )
 }

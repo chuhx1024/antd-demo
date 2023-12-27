@@ -1,9 +1,30 @@
 .basic-layout {
     height: 100vh;
+
     .logo-vertical {
-        height: 32px;
-        margin: 16px;
+        height: 64px;
+        text-align: center;
         background: rgba(255, 255, 255, 0.2);
         border-radius: 6px;
+        color: #fff;
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        .logo-icon {
+            font-size: 26px;
+        }
+        .logo-title {
+            // font-size: 20px;
+            letter-spacing: 10px;
+        }
+    }
+    .siderContainer {
+        overflow-y: auto;
+    }
+    .headerContainer {
+        display: flex;
+        justify-content: space-between;
+        background-color: #fff;
+        padding: 0 20px 0 0;
     }
 }
